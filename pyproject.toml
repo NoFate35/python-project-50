@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = "generate difference"
+authors = ["NoFate35 <vsokol35@mail.ru>"]
+readme = "README.md"
+packages = [{ include = "gendiff" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.scripts]
+gendiff = "gendiff.scripts.gendiff:main"
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
