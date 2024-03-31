@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{ include = "gendiff" }]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.8.18"
 
 
 [tool.poetry.scripts]
