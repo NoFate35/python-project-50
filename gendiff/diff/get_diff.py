@@ -17,7 +17,6 @@ def generate_diff(file_path1, file_path2):
                 exit.append(f"  + {key1}: {file_object2[key1]}\n")
         else:
             exit.append(f"  - {key1}: {value1}\n")
-            #print(f"- {key1}: {value1}\n ")
     for key2, value2 in file_object2.items():
         if key2 in visited:
             continue
