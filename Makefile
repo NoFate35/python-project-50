@@ -7,7 +7,6 @@ test:
 test-coverage:
 	poetry run pytest --cov=hexlet_python_package --cov-report lcov
 
-
 lint:
 	poetry run flake8 hexlet_python_package
 
