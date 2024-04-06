@@ -5,10 +5,10 @@ test:
 	poetry run pytest
 
 test-coverage:
-	poetry run pytest -cov=python-project-50 -cov-report.xml
+	poetry run pytest --cov=hexlet_python_package --cov-report xml
 
 lint:
-	poetry run flake8
+	poetry run flake8 hexlet_python_package
 
 selfcheck:
 	poetry check
