@@ -8,6 +8,7 @@ packages = [{ include = "gendiff" }]
 
 [tool.poetry.dependencies]
 python = "^3.8.18"
+pyyaml = "^6.0.1"
 
 
 
