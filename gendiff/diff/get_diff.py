@@ -1,4 +1,5 @@
 from gendiff.diff.parse import get_data
+from gendiff.diff.stylish import formatter1
 
 
 def make_value(value, file_extention):
@@ -12,24 +13,30 @@ def make_value(value, file_extention):
 def generate_diff(file_path1, file_path2):
     data1, data2, file_extention = get_data(file_path1, file_path2)
     """get paths to files and return difference of them fot .txt string"""
-    exit = []
-    visited = set()
-    for key1, value1 in data1.items():
-        value1 = make_value(value1, file_extention)
-        visited.add(key1)
-        if key1 in data2.keys():
-            if value1 == data2[key1]:
-                exit.append(f"    {key1}: {value1}\n")
-            else:
-                exit.append(f"  - {key1}: {value1}\n")
-                exit.append(f"  + {key1}: {data2[key1]}\n")
-        else:
-            exit.append(f"  - {key1}: {value1}\n")
-    for key2, value2 in data2.items():
-        value2 = make_value(value2, file_extention)
-        if key2 in visited:
-            continue
-        else:
-            exit.append(f"  + {key2}: {value2}\n")
-    exit.sort(key=lambda x: x[4])
-    return ''.join(['{\n'] + exit + ['}\n'])
+    return get_diff_dict(data1, data2, file_extention)
+    
+def get_diff_dict(data1, data2, file_extention):
+    def walk(tree1, tree2, file_extention, dept):
+        string = {}
+        visited = set()
+        for key1 in tree1.keys():
+                visited.add(key1)
+                if key1 in tree2.keys():
+                    string['name'] = [key1]
+                    string["meta"] = ["m", dept]
+                    if isinstance(tree1[key1], dict) == True:
+                        string["children"] = walk(tree1[key1], tree2[key1], file_extention, dept + 1)
+                    else:
+                        if tree1[key1] == tree2[key1]:
+                            string["value"] = [tree1[key1]]
+                        else:
+                            string["value"] = [tree1[key1], tree2[key1]]
+                            string["meta"] = ["u", dept]
+                else:
+                    string["name"] = [key1]
+                    string["meta"] = ["u", dept]
+                    if isinstance(tree1[key1], dict) == True:
+                            
+                            
+    exit = walk(data1, data2, file_extention, 1)
+    return formatter1(exit)
