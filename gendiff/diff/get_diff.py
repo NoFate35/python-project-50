@@ -27,15 +27,15 @@ def get_diff_dict(data1, data2, file_extention):
                 if key1 in tree2.keys():
                     #print("if key1 in tree2.keys() key1", key1)
                     if isinstance(tree1[key1], dict) == True:
-                        string['parent' + str(i) + '1'] = key1
                         if isinstance(tree2[key1], dict) == True:
-                            string["meta"] = ["m", dept]
-                            string["patent" + str(i) + "2"] = key1
-                            string["children"] = [walk(tree1[key1], tree2[key1], file_extention, dept + 1)]
+                            string["meta" + str(i)] = ["m", dept]
+                            string["patents" + str(i)] = key1
+                            string["children" + str(i)] = [walk(tree1[key1], tree2[key1], file_extention, dept + 1)]
                         else:
+                        	string['parent' + str(i) + '1'] = key1
                         	string["child" + str(i) + "1"] = walk(tree1[key1], {}, file_extention, dept + 1)
                         	string["key" + str(i) + "2"] = key1
-                        	string["meta"] = ["u", dept]
+                        	string["meta" + str(i)] = ["u", dept]
                         	string["value" + str(i) + "2"] = tree2[key1]
                     else:
                         if isinstance(tree2[key1], dict) == True:
@@ -47,18 +47,18 @@ def get_diff_dict(data1, data2, file_extention):
                         	
                         else:
                             if tree1[key1] == tree2[key1]:
-                            	string["keys"] = key1
-                            	string["values"] = tree1[key1]
-                            	string["meta"] = ["m", dept]
+                            	string["keys" + str(i)] = key1
+                            	string["values"+ str(i)] = tree1[key1]
+                            	string["meta"+ str(i)] = ["m", dept]
                             else:
                             	#print("else else True")
-                            	string["keys"] = key1
+                            	string["keys" + str(i)] = key1
                             	string["value" + str(i) + "1"] = tree1[key1]
                             	string["value" + str(i) + "2"] = tree2[key1]
                             	#print("tree1[key1], tree2[key1]",tree1[key1], tree2[key1])
-                            	string["meta"] = ["u", dept]
+                            	string["meta" + str(i)] = ["u", dept]
                 else:
-                    string["meta"] = ["u", dept]
+                    string["meta" + str(i)] = ["u", dept]
                     if isinstance(tree1[key1], dict) == True:
                             string["patent" + str(i) + "1"] = key1
                             string["child" + str(i) + "1"] = walk(tree1[key1], {}, file_extention, dept + 1)
@@ -66,6 +66,7 @@ def get_diff_dict(data1, data2, file_extention):
                             string["key" + str(i) + "1"] = key1
                             string["value" + str(i) + "1"] = tree1[key1]
         for key2, i in zip(tree2.keys(), range(len(tree1), len(tree2))):
+            				string["meta" + str(i)] = ["u", dept]
             				if key2 in visited:
             					pass
             				if isinstance(tree2[key2], dict) == True:
