@@ -19,9 +19,9 @@ def get_diff_dict(data1, data2, file_extention):
     exit = []
     def walk(tree1, tree2, file_extention, dept):
         print("tree1", tree1, "tree2", tree2, sep='\n')
-        string = {}
+        string = []
         visited = set()
-        for key1, i in zip(tree1.keys(), range(len(tree1))):
+        for key1 in  tree1.keys():
                 print("for key1 in tree1.keys(): key1", i)
                 visited.add(key1)
                 if key1 in tree2.keys():
@@ -65,7 +65,7 @@ def get_diff_dict(data1, data2, file_extention):
                     else:
                             string["key" + str(i) + "1"] = key1
                             string["value" + str(i) + "1"] = tree1[key1]
-        for key2, i in zip(tree2.keys(), range(len(tree1), len(tree2))):
+        for key2 in tree2.keys():
             				string["meta" + str(i)] = ["u", dept]
             				if key2 in visited:
             					pass
