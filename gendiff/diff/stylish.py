@@ -69,7 +69,7 @@ def formatter1(tree, file_extention):
     			if second_key == "parent":
     				str.append(f"{second[second_key]}: ")
     				str.append("".join(walk(second['children'], file_extention, dept + 1)))
-    				str.append("".join(["      " * dept, "  ", "}"]))
+    				str.append("".join(["    " * (dept + 1),  "}"]))
     				str.append("\n")
     			else:
     				str.append(f"{second[second_key]}: ")
@@ -83,7 +83,8 @@ def formatter1(tree, file_extention):
     			if first_key == "parent":
     				str.append(f"{first[first_key]}: ")
     				str.append("".join(walk(first['children'], file_extention, dept + 1)))
-    				#print("str", str)
+    				str.append("".join(["    " * (dept + 1), "}"]))
+    				str.append("\n")
     			else:
     				str.append(f"{first[first_key]}: ")
     				str.append(f"{first['value']}")
@@ -110,6 +111,8 @@ def formatter1(tree, file_extention):
     				str.append(f"{first[first_key]}: ")
     				if first_key == "parent":
     					str.append("".join(walk(first['children'], file_extention, dept + 1)))
+    					str.append("".join(["    " * (dept + 1), "}"]))
+    					str.append("\n")
     				else: 
     				    str.append(f"{make_value(first['value'], file_extention)}")
     				    str.append("\n")
@@ -121,10 +124,11 @@ def formatter1(tree, file_extention):
     				if second_key == "parent":
     					str.append(f"{walk(second['children'], file_extention, dept + 1)}")
     					str.append("".join(["\n", "    " * (dept - 1), "  ", "}"]))
+    					str.append("\n")
     				else: 
     				    str.append(f"{make_value(second['value'], file_extention)}")
     				    str.append("\n")
     		exit.append("".join(str))
     	return exit
-    print(print(walk(tree, file_extention, dept)))
+    #print(print(walk(tree, file_extention, dept)))
     return "".join(walk(tree, file_extention, dept))
