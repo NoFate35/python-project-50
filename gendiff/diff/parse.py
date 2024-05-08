@@ -18,4 +18,4 @@ def get_data(file_path1, file_path2):
             with open(file_path2, 'r') as file_object2:
                 data1 = yaml.load(file_object1, Loader=SafeLoader)
                 data2 = yaml.load(file_object2, Loader=SafeLoader)
-    return (data1, data2, file_extention)
+    return (data1, data2)
