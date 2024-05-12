@@ -93,12 +93,13 @@ def first_tree(tree1, tree2, flag, string, visited):
                                              walk(tree1[key1],
                                                   {}, flag)}}})
             else:
+                print("eeeeelse")
                 string.append({
                             flag: {
                                    "first": {
                                              "key": key1,
                                              "value": tree1[key1]}}})
-        return flag, string, visited
+    return flag, string, visited
 
 
 def second_tree(tree2, visited, string):
