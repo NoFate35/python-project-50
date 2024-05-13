@@ -42,86 +42,6 @@ def sort_tree(ls):
             return parent
         else:
             return second["key"]
-		
-"""
-def formatter1(tree):
-    #get the dirrerence tree and return string of difference
-    dept = 0
-    def walk(tree, dept):
-    	exit = []
-    	exit.append("{\n")
-    	sorted_tree = sorted(tree, key=sort_tree)
-    	for comparsion in sorted_tree:
-    		str = []
-    		match = get_match(comparsion)
-    		strings = comparsion[match]
-    		first = strings.get("first")
-    		second = strings.get("second")
-    		if (first is None) and (match == "u"):
-    			second_key = get_key(second)
-    			str.append("    " * dept )
-    			str.append("  ")
-    			str.append("+ ")
-    			if second_key == "parent":
-    				str.append(f"{second[second_key]}: ")
-    				str.append("".join(walk(second['children'], dept + 1)))
-    			else:
-    				str.append(f"{second[second_key]}: ")
-    				str.append(f"{make_value(second['value'])}")
-    		elif (second is None) and (match == "u"):
-    			first_key = get_key(first)
-    			str.append("    " * dept )
-    			str.append("  ")
-    			str.append("- ")
-    			if first_key == "parent":
-    				str.append(f"{first[first_key]}: ")
-    				str.append("".join(walk(first['children'], dept + 1)))
-    			else:
-    				str.append(f"{first[first_key]}: ")
-    				str.append(f"{first['value']}")
-    		elif (second is None) and (match == "m"):
-    			first_key = get_key(first)
-    			str.append("".join(["    " * (dept + 1), f"{first[first_key]}: "]))
-    			if first_key == "parent":
-    				str.append("".join(walk(first['children'], dept + 1)))
-    			else:
-    				str.append(f"{first['value']}")
-    		else:
-    				str = else_in_formatter(first, second, str, dept)
-    		exit.append("".join(str))
-    		exit.append("\n")
-    	exit.append("    " * dept )
-    	exit.append("}")
-    	return exit
-    	
-    	
-    def else_in_formatter(first, second, str, dept):
-        first_key = get_key(first)
-        second_key = get_key(second)
-        str.append("    " * dept )
-        str.append("  ")
-        str.append("- ")
-        str.append(f"{first[first_key]}: ")
-        if first_key == "parent":
-    	    str.append("".join(walk(first['children'], dept + 1)))
-    	    str.append("\n")
-        else: 
-            str.append(f"{make_value(first['value'])}")
-            str.append("\n")
-        str.append("    " * dept )
-        str.append("  ")
-        str.append("+ ")
-        str.append(f"{second[second_key]}: ")
-        if second_key == "parent":
-    	    str.append(f"{walk(second['children'], dept + 1)}")
-        else: 
-        	str.append(f"{make_value(second['value'])}")
-        return str
-
-
-    return "".join(walk(tree, dept)) + "\n"
-    """
-
 
 
 def formatter1(tree, dept=0):
@@ -135,16 +55,7 @@ def formatter1(tree, dept=0):
         first = strings.get("first")
         second = strings.get("second")
         if (first is None) and (match == "u"):
-            second_key = get_key(second)
-            str.append("    " * dept )
-            str.append("  ")
-            str.append("+ ")
-            if second_key == "parent":
-                str.append(f"{second[second_key]}: ")
-                str.append("".join(formatter1(second['children'], dept + 1)))
-            else:
-                str.append(f"{second[second_key]}: ")
-                str.append(f"{make_value(second['value'])}")
+            str = if_in_formatter(first, second, str, dept)
         elif (second is None) and (match == "u"):
             first_key = get_key(first)
             str.append("    " * dept)
@@ -170,9 +81,27 @@ def formatter1(tree, dept=0):
     exit.append("    " * dept )
     exit.append("}")
     return "".join(exit)
-    	
-    	
+
+
+def if_in_formatter(first, second, str, dept):
+    """This function is the part of FORMATTER, to
+    avoid the linter problems"""
+    second_key = get_key(second)
+    str.append("    " * dept )
+    str.append("  ")
+    str.append("+ ")
+    if second_key == "parent":
+        str.append(f"{second[second_key]}: ")
+        str.append("".join(formatter1(second['children'], dept + 1)))
+    else:
+        str.append(f"{second[second_key]}: ")
+        str.append(f"{make_value(second['value'])}")
+    return str
+
+
 def else_in_formatter(first, second, str, dept):
+    """This function is the part of FORMATTER, to
+    avoid the linter problems"""
     first_key = get_key(first)
     second_key = get_key(second)
     str.append("    " * dept )
