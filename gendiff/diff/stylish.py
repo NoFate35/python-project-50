@@ -125,8 +125,5 @@ def else_in_formatter(first, second, str, dept):
     str.append("  ")
     str.append("+ ")
     str.append(f"{second[second_key]}: ")
-    if second_key == "parent":
-        str.append(f"{formatter1(second['children'], dept + 1)}")
-    else:
-        str.append(f"{make_value(second['value'])}")
+    str.append(f"{make_value(second['value'])}")
     return str
