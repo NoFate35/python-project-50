@@ -57,16 +57,7 @@ def formatter1(tree, dept=0):
         if (first is None) and (match == "u"):
             str = if_in_formatter(first, second, str, dept)
         elif (second is None) and (match == "u"):
-            first_key = get_key(first)
-            str.append("    " * dept)
-            str.append("  ")
-            str.append("- ")
-            if first_key == "parent":
-                str.append(f"{first[first_key]}: ")
-                str.append("".join(formatter1(first['children'], dept + 1)))
-            else:
-                str.append(f"{first[first_key]}: ")
-                str.append(f"{first['value']}")
+            str = elif_in_formatter(first, second, str, dept)
         elif (second is None) and (match == "m"):
             first_key = get_key(first)
             str.append("".join(["    " * (dept + 1), f"{first[first_key]}: "]))
@@ -78,7 +69,7 @@ def formatter1(tree, dept=0):
             str = else_in_formatter(first, second, str, dept)
         exit.append("".join(str))
         exit.append("\n")
-    exit.append("    " * dept )
+    exit.append("    " * dept)
     exit.append("}")
     return "".join(exit)
 
@@ -87,7 +78,7 @@ def if_in_formatter(first, second, str, dept):
     """This function is the part of FORMATTER, to
     avoid the linter problems"""
     second_key = get_key(second)
-    str.append("    " * dept )
+    str.append("    " * dept)
     str.append("  ")
     str.append("+ ")
     if second_key == "parent":
@@ -99,27 +90,43 @@ def if_in_formatter(first, second, str, dept):
     return str
 
 
+def elif_in_formatter(first, second, str, dept):
+    """This function is the part of FORMATTER, to
+    avoid the linter problems"""
+    first_key = get_key(first)
+    str.append("    " * dept)
+    str.append("  ")
+    str.append("- ")
+    if first_key == "parent":
+        str.append(f"{first[first_key]}: ")
+        str.append("".join(formatter1(first['children'], dept + 1)))
+    else:
+        str.append(f"{first[first_key]}: ")
+        str.append(f"{first['value']}")
+    return str
+
+
 def else_in_formatter(first, second, str, dept):
     """This function is the part of FORMATTER, to
     avoid the linter problems"""
     first_key = get_key(first)
     second_key = get_key(second)
-    str.append("    " * dept )
+    str.append("    " * dept)
     str.append("  ")
     str.append("- ")
     str.append(f"{first[first_key]}: ")
     if first_key == "parent":
         str.append("".join(formatter1(first['children'], dept + 1)))
         str.append("\n")
-    else: 
+    else:
         str.append(f"{make_value(first['value'])}")
         str.append("\n")
-    str.append("    " * dept )
+    str.append("    " * dept)
     str.append("  ")
     str.append("+ ")
     str.append(f"{second[second_key]}: ")
     if second_key == "parent":
-    	str.append(f"{walk(second['children'], dept + 1)}")
-    else: 
+        str.append(f"{formatter1(second['children'], dept + 1)}")
+    else:
         str.append(f"{make_value(second['value'])}")
     return str
