@@ -46,6 +46,7 @@ def if_key1_in_tree2(key1, tree1, tree2, flag, string):
                                                                    tree2[key1]
                                                                    }}})
     else:
+        pass
         if isinstance(tree2[key1], dict):
             string.append({
                 flag: {
