@@ -93,7 +93,6 @@ def first_tree(tree1, tree2, flag, string, visited):
                                              walk(tree1[key1],
                                                   {}, flag)}}})
             else:
-                print("eeeeelse")
                 string.append({
                             flag: {
                                    "first": {
