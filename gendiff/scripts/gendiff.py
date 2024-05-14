@@ -13,6 +13,7 @@ def main():
     parser.add_argument("-f", "--format", type=str, help="set format of output")
     args = parser.parse_args()
     if args.format == "one":
-        print("privettt")
+        format = args.format
     else:
-        print(generate_diff(args.first_file, args.second_file))
+        format = "two"
+    print(generate_diff(args.first_file, args.second_file, format))

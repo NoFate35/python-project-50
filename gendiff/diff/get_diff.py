@@ -2,13 +2,13 @@ from gendiff.diff.parse import get_data
 from gendiff.diff.stylish import formatter1
 
 
-def generate_diff(file_path1, file_path2):
+def generate_diff(file_path1, file_path2, format="two"):
     data1, data2 = get_data(file_path1, file_path2)
     """get paths to files, transfer them to the
     GET_DATA and receive files objects from
     GET_DATA. give files objects to the
     GET_DIFF_DICT and rerurn result string"""
-    return get_diff_dict(data1, data2)
+    return get_diff_dict(data1, data2, format)
 
 
 def walk(tree1, tree2, flag):
@@ -123,10 +123,13 @@ def second_tree(tree2, visited, string):
     return string
 
 
-def get_diff_dict(data1, data2):
+def get_diff_dict(data1, data2, formatter):
     """get files objects and transfer them for
     comparsion to WALK,
     then result of WALK transfer to FORMATTER
     Ready string from FORMATTER return to
     GENERATE_DICT"""
-    return formatter1(walk(data1, data2, "u"))
+    if formatter == "one":
+        return "ooookey"
+    else:
+        return formatter1(walk(data1, data2, "u"))
