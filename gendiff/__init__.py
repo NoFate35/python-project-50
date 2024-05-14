@@ -3,5 +3,4 @@ from gendiff.diff.formatter1 import stylish
 
 __all__ = (
     'generate_diff',
-    'stylish'
 )
