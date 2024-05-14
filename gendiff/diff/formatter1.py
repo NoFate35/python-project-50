@@ -44,7 +44,7 @@ def sort_tree(ls):
             return second["key"]
 
 
-def formatter1(tree, dept=0):
+def stylish(tree, dept=0):
     exit = []
     exit.append("{\n")
     sorted_tree = sorted(tree, key=sort_tree)
@@ -55,18 +55,18 @@ def formatter1(tree, dept=0):
         first = strings.get("first")
         second = strings.get("second")
         if (first is None) and (match == "u"):
-            str = if_in_formatter(first, second, str, dept)
+            str = if_in_stylish(first, second, str, dept)
         elif (second is None) and (match == "u"):
-            str = elif_in_formatter(first, second, str, dept)
+            str = elif_in_stylish(first, second, str, dept)
         elif (second is None) and (match == "m"):
             first_key = get_key(first)
             str.append("".join(["    " * (dept + 1), f"{first[first_key]}: "]))
             if first_key == "parent":
-                str.append("".join(formatter1(first['children'], dept + 1)))
+                str.append("".join(stylish(first['children'], dept + 1)))
             else:
                 str.append(f"{first['value']}")
         else:
-            str = else_in_formatter(first, second, str, dept)
+            str = else_in_stylish(first, second, str, dept)
         exit.append("".join(str))
         exit.append("\n")
     exit.append("    " * dept)
@@ -74,8 +74,8 @@ def formatter1(tree, dept=0):
     return "".join(exit)
 
 
-def if_in_formatter(first, second, str, dept):
-    """This function is the part of FORMATTER, to
+def if_in_stylish(first, second, str, dept):
+    """This function is the part of STYLISH to
     avoid the linter problems"""
     second_key = get_key(second)
     str.append("    " * dept)
@@ -83,15 +83,15 @@ def if_in_formatter(first, second, str, dept):
     str.append("+ ")
     if second_key == "parent":
         str.append(f"{second[second_key]}: ")
-        str.append("".join(formatter1(second['children'], dept + 1)))
+        str.append("".join(stylish(second['children'], dept + 1)))
     else:
         str.append(f"{second[second_key]}: ")
         str.append(f"{make_value(second['value'])}")
     return str
 
 
-def elif_in_formatter(first, second, str, dept):
-    """This function is the part of FORMATTER, to
+def elif_in_stylish(first, second, str, dept):
+    """This function is the part of STYLISH, to
     avoid the linter problems"""
     first_key = get_key(first)
     str.append("    " * dept)
@@ -99,15 +99,15 @@ def elif_in_formatter(first, second, str, dept):
     str.append("- ")
     if first_key == "parent":
         str.append(f"{first[first_key]}: ")
-        str.append("".join(formatter1(first['children'], dept + 1)))
+        str.append("".join(stylish(first['children'], dept + 1)))
     else:
         str.append(f"{first[first_key]}: ")
         str.append(f"{first['value']}")
     return str
 
 
-def else_in_formatter(first, second, str, dept):
-    """This function is the part of FORMATTER, to
+def else_in_stylish(first, second, str, dept):
+    """This function is the part of STYLISH, to
     avoid the linter problems"""
     first_key = get_key(first)
     second_key = get_key(second)
@@ -116,7 +116,7 @@ def else_in_formatter(first, second, str, dept):
     str.append("- ")
     str.append(f"{first[first_key]}: ")
     if first_key == "parent":
-        str.append("".join(formatter1(first['children'], dept + 1)))
+        str.append("".join(stylish(first['children'], dept + 1)))
         str.append("\n")
     else:
         str.append(f"{make_value(first['value'])}")

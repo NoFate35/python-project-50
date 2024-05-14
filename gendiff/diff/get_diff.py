@@ -1,5 +1,5 @@
 from gendiff.diff.parse import get_data
-from gendiff.diff.stylish import formatter1
+from gendiff.diff.formatter1 import stylish
 
 
 def generate_diff(file_path1, file_path2, format="two"):
@@ -132,4 +132,4 @@ def get_diff_dict(data1, data2, formatter):
     if formatter == "one":
         return "ooookey"
     else:
-        return formatter1(walk(data1, data2, "u"))
+        return stylish(walk(data1, data2, "u"))
