@@ -1,8 +1,9 @@
 from gendiff.diff.parse import get_data
-from gendiff.diff.formatter1 import stylish
+from gendiff.diff.format.formatter1 import stylish
+from gendiff.diff.format.formatter2 import plain
 
 
-def generate_diff(file_path1, file_path2, format="two"):
+def generate_diff(file_path1, file_path2, format="stylish"):
     data1, data2 = get_data(file_path1, file_path2)
     """get paths to files, transfer them to the
     GET_DATA and receive files objects from
@@ -129,7 +130,8 @@ def get_diff_dict(data1, data2, formatter):
     then result of WALK transfer to FORMATTER
     Ready string from FORMATTER return to
     GENERATE_DICT"""
-    if formatter == "one":
-        return "ooookey"
+    dict_of_difference = walk(data1, data2, "u")
+    if formatter == "plain":
+        return plain(dict_of_difference)
     else:
-        return stylish(walk(data1, data2, "u"))
+        return stylish(dict_of_difference)
