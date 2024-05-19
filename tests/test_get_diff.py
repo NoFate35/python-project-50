@@ -19,23 +19,34 @@ def files_yml():
                  
                  
 @pytest.fixture
-def result_json():
-    return "tests/fixtures/result_json.txt"
-    
-    
+def result_stylish():
+    return "tests/fixtures/result_stylish.txt"
+
+
 @pytest.fixture
-def result_yml():
-    return "tests/fixtures/result_yml.txt"
-       
+def result_plain():
+    return "tests/fixtures/result_plain.txt"
 
 
-def test_diff_json(files_json, result_json):
+def test_json_stylish(files_json, result_stylish):
     first_file, second_file = files_json
-    with open(result_json, "r") as result:
+    with open(result_stylish, "r") as result:
         assert generate_diff(first_file, second_file) == result.read()
         
         
-def test_diff_yml(files_yml, result_yml):
+def test_yml_stylish(files_yml, result_stylish):
     first_file, second_file = files_yml
-    with open(result_yml, "r") as result:
+    with open(result_stylish, "r") as result:
         assert generate_diff(first_file, second_file) == result.read()
+
+
+def test_json_plain(files_json, result_plain):
+    first_file, second_file = files_json
+    with open(result_plain, "r") as result:
+        assert generate_diff(first_file, second_file, "plain") == result.read()
+        
+        
+def test_yml_plain(files_yml, result_plain):
+    first_file, second_file = files_yml
+    with open(result_plain, "r") as result:
+        assert generate_diff(first_file, second_file, "plain") == result.read()
