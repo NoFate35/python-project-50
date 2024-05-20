@@ -1,39 +1,5 @@
-from gendiff.diff.format.change_values import make_value
-
-
-def get_match(comparsion):
-    """abstract level function"""
-    char = comparsion.get("m")
-    if char is None:
-        return "u"
-    return "m"
-
-
-def get_key(string):
-    """abstract level function"""
-    key = string.get("key")
-    if key is None:
-        return "parent"
-    return "key"
-
-
-def sort_tree(ls):
-    """sort values of the difference list by alphabet in formatter function"""
-    comparsion = ls[get_match(ls)]
-    first = comparsion.get("first")
-    second = comparsion.get("second")
-    if first:
-        parent = first.get("parent")
-        if parent:
-            return parent
-        else:
-            return first["key"]
-    else:
-        parent = second.get("parent")
-        if parent:
-            return parent
-        else:
-            return second["key"]
+from gendiff.diff.format.supporting import make_value, get_match, get_key
+from gendiff.diff.format.supporting import sort_tree
 
 
 def stylish(tree, dept=0):
