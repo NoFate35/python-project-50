@@ -12,9 +12,9 @@ def plain(tree, dept=0):
         first = strings.get("first")
         second = strings.get("second")
         if (first is None) and (match == "u"):
-            str = if_in_stylish(first, second, str, dept)
+            str = add_second(second, str, dept)
         elif (second is None) and (match == "u"):
-            str = elif_in_stylish(first, second, str, dept)
+            str = add_first(first, second, str, dept)
         elif (second is None) and (match == "m"):
             first_key = get_key(first)
             str.append("".join(["    " * (dept + 1), f"{first[first_key]}: "]))
@@ -31,34 +31,34 @@ def plain(tree, dept=0):
     return "".join(exit)
 
 
-def if_in_stylish(first, second, str, dept):
+def add_second(second, str, dept):
     """This function is the part of STYLISH to
     avoid the linter problems"""
-    second_key = get_key(second)
+    key = get_key(second)
     str.append("    " * dept)
     str.append("  ")
     str.append("+ ")
-    if second_key == "parent":
-        str.append(f"{second[second_key]}: ")
+    if key == "parent":
+        str.append(f"{second[key]}: ")
         str.append("".join(stylish(second['children'], dept + 1)))
     else:
-        str.append(f"{second[second_key]}: ")
+        str.append(f"{second[key]}: ")
         str.append(f"{make_value(second['value'])}")
     return str
 
 
-def elif_in_stylish(first, second, str, dept):
+def add_first(first, str, dept):
     """This function is the part of STYLISH, to
     avoid the linter problems"""
-    first_key = get_key(first)
+    key = get_key(first)
     str.append("    " * dept)
     str.append("  ")
     str.append("- ")
-    if first_key == "parent":
-        str.append(f"{first[first_key]}: ")
+    if key == "parent":
+        str.append(f"{first[key]}: ")
         str.append("".join(stylish(first['children'], dept + 1)))
     else:
-        str.append(f"{first[first_key]}: ")
+        str.append(f"{first[key]}: ")
         str.append(f"{first['value']}")
     return str
 

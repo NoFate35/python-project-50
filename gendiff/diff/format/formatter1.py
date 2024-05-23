@@ -13,9 +13,9 @@ def stylish(tree, dept=0):
         first = strings.get("first")
         second = strings.get("second")
         if (first is None) and (match == "u"):
-            str = if_in_stylish(first, second, str, dept)
+            str = add(second, str, dept, "+ ")
         elif (second is None) and (match == "u"):
-            str = elif_in_stylish(first, second, str, dept)
+            str = add(first, str, dept, "- ")
         elif (second is None) and (match == "m"):
             first_key = get_key(first)
             str.append("".join(["    " * (dept + 1), f"{first[first_key]}: "]))
@@ -24,7 +24,7 @@ def stylish(tree, dept=0):
             else:
                 str.append(f"{first['value']}")
         else:
-            str = else_in_stylish(first, second, str, dept)
+            str = difference(first, second, str, dept)
         exit.append("".join(str))
         exit.append("\n")
     exit.append("    " * dept)
@@ -32,39 +32,23 @@ def stylish(tree, dept=0):
     return "".join(exit)
 
 
-def if_in_stylish(first, second, str, dept):
+def add(tree, str, dept, char):
     """This function is the part of STYLISH to
     avoid the linter problems"""
-    second_key = get_key(second)
+    key = get_key(tree)
     str.append("    " * dept)
     str.append("  ")
-    str.append("+ ")
-    if second_key == "parent":
-        str.append(f"{second[second_key]}: ")
-        str.append("".join(stylish(second['children'], dept + 1)))
+    str.append(char)
+    if key == "parent":
+        str.append(f"{tree[key]}: ")
+        str.append("".join(stylish(tree['children'], dept + 1)))
     else:
-        str.append(f"{second[second_key]}: ")
-        str.append(f"{make_value(second['value'])}")
+        str.append(f"{tree[key]}: ")
+        str.append(f"{make_value(tree['value'])}")
     return str
 
 
-def elif_in_stylish(first, second, str, dept):
-    """This function is the part of STYLISH, to
-    avoid the linter problems"""
-    first_key = get_key(first)
-    str.append("    " * dept)
-    str.append("  ")
-    str.append("- ")
-    if first_key == "parent":
-        str.append(f"{first[first_key]}: ")
-        str.append("".join(stylish(first['children'], dept + 1)))
-    else:
-        str.append(f"{first[first_key]}: ")
-        str.append(f"{first['value']}")
-    return str
-
-
-def else_in_stylish(first, second, str, dept):
+def difference(first, second, str, dept):
     """This function is the part of STYLISH, to
     avoid the linter problems"""
     first_key = get_key(first)
