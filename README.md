@@ -7,4 +7,4 @@
 
 
 gendiff usage example:
-[![asciicast](https://asciinema.org/a/Rax4KLnnAboRmskouGbnnmuQW.svg)](https://asciinema.org/a/Rax4KLnnAboRmskouGbnnmuQW)
+[![asciicast](https://asciinema.org/a/Rax4KLnnAboRmskouGbnnmuQW.svg)](https://asciinema.org/a/n2NXdDXv6zGbR21pLnqEXWNcj)
