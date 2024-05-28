@@ -1,4 +1,4 @@
-def make_value(value):
+def make_value(value, formatter="f1"):
     """change some values"""
     if value is False:
         value = 'false'
@@ -6,6 +6,8 @@ def make_value(value):
         value = 'true'
     elif value is None:
         value = "null"
+    elif formatter == "f2":
+    	value = "'" + value + "'"
     return value
 
 
