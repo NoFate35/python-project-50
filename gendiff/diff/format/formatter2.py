@@ -24,6 +24,17 @@ def plain(tree):
                 text += f" to {make_value(second['value'], 'f2')}"
                 out.append("Property " + "'" + propertie + "'" + text + "\n")
                 prop.pop()
+            elif (first is None) and (match == "u"):
+                key = get_key(second)
+                prop.append(f"{second[key]}")
+                propertie = ".".join(prop)
+                text = " was added with value: "
+                if key == "parent":
+                    text += "[complex value]"
+                else:
+                    text += f"{make_value(second['value'], 'f2')}"
+                out.append("Property " + "'" + propertie + "'" + text + "\n")
+                prop.pop()
             elif (second is None) and (match == "m"):
                 first_key = get_key(first)
                 prop.append( f"{first[first_key]}")
@@ -32,6 +43,12 @@ def plain(tree):
                 else:
                     pass
                 prop.pop()
-        print("out", out)
+            elif (second is None) and (match == "u"):
+                key = get_key(first)
+                prop.append(f"{first[key]}")
+                propertie = ".".join(prop)
+                text = " was removed"
+                out.append("Property " + "'" + propertie + "'" + text + "\n")
+                prop.pop()
     walk(tree, prop=[])
     return "".join(out)
