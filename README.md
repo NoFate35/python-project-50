@@ -6,5 +6,5 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/88870cbac3ce923e8b25/test_coverage)](https://codeclimate.com/github/NoFate35/python-project-50/test_coverage)
 
 
-gendiff usage example:
-[![asciicast](https://asciinema.org/a/Rax4KLnnAboRmskouGbnnmuQW.svg)](https://asciinema.org/a/n2NXdDXv6zGbR21pLnqEXWNcj)
+heclet-code usage:
+[![asciicast](https://asciinema.org/a/n2NXdDXv6zGbR21pLnqEXWNcj.svg)](https://asciinema.org/a/n2NXdDXv6zGbR21pLnqEXWNcj)
