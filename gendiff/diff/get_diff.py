@@ -1,6 +1,7 @@
 from gendiff.diff.parse import get_data
 from gendiff.diff.format.formatter1 import stylish
 from gendiff.diff.format.formatter2 import plain
+from gendiff.diff.format.formatter3 import json
 
 
 def generate_diff(file_path1, file_path2, format="stylish"):
@@ -132,6 +133,9 @@ def get_diff_dict(data1, data2, formatter):
     GENERATE_DICT"""
     dict_of_difference = walk(data1, data2, "u")
     if formatter == "plain":
-        return plain(dict_of_difference)
+        out = plain(dict_of_difference)
+    elif formatter == "json":
+    	out = json(dict_of_difference)
     else:
-        return stylish(dict_of_difference)
+        out = stylish(dict_of_difference)
+    return out
