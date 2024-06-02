@@ -6,8 +6,10 @@ def make_value(value, formatter="f1"):
         value = 'true'
     elif value is None:
         value = "null"
+    elif value == 0:
+        value = '0'
     elif formatter == "f2":
-        value = "'" + str(value) + "'"
+        value = "'" + value + "'"
     return value
 
 
