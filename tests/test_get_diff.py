@@ -28,6 +28,11 @@ def result_plain():
     return "tests/fixtures/result_plain.txt"
 
 
+@pytest.fixture
+def result_json():
+    return "tests/fixtures/result_json.txt"
+
+
 def test_json_stylish(files_json, result_stylish):
     first_file, second_file = files_json
     with open(result_stylish, "r") as result:
@@ -50,3 +55,15 @@ def test_yml_plain(files_yml, result_plain):
     first_file, second_file = files_yml
     with open(result_plain, "r") as result:
         assert generate_diff(first_file, second_file, "plain") == result.read()
+
+
+def test_json_json(files_json, result_json):
+    first_file, second_file = files_json
+    with open(result_json, "r") as result:
+        assert generate_diff(first_file, second_file, "json") == result.read()
+        
+        
+def test_yml_json(files_yml, result_json):
+    first_file, second_file = files_yml
+    with open(result_json, "r") as result:
+        assert generate_diff(first_file, second_file, "json") == result.read()
