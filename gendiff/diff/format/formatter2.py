@@ -17,6 +17,7 @@ def plain(tree):    # noqa: C901
             second = strings.get("second")
             if first and second:
                 first_key = get_key(first)
+                second_key = get_key(second)
                 prop.append(f"{first[first_key]}")
                 propertie = ".".join(prop)
                 text = " was updated. From "
@@ -24,7 +25,11 @@ def plain(tree):    # noqa: C901
                     text += "[complex value]"
                 else:
                     text += f"{make_value(first['value'], 'f2')}"
-                text += f" to {make_value(second['value'], 'f2')}"
+                text += " to "
+                if second_key == "parent":
+                    text += "[complex value]"
+                else:
+                    text += f"{make_value(second['value'], 'f2')}"
                 out.append("Property " + "'" + propertie + "'" + text + "\n")
             elif (first is None) and (match == "u"):
                 key = get_key(second)
