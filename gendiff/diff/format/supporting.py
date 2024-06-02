@@ -7,7 +7,7 @@ def make_value(value, formatter="f1"):
     elif value is None:
         value = "null"
     elif formatter == "f2":
-        value = "'" + value + "'"
+        value = "'" + str(value) + "'"
     return value
 
 
