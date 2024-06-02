@@ -67,5 +67,9 @@ def difference(first, second, str, dept):
     str.append("  ")
     str.append("+ ")
     str.append(f"{second[second_key]}: ")
-    str.append(f"{make_value(second['value'])}")
+    if second_key == "parent":
+        str.append("".join(stylish(second['children'], dept + 1)))
+        str.append("\n")
+    else:
+        str.append(f"{make_value(second['value'])}")
     return str
