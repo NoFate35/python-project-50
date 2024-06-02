@@ -29,24 +29,18 @@ def if_key1_in_tree2(key1, tree1, tree2, flag, string):
     if isinstance(tree1[key1], dict):
         if isinstance(tree2[key1], dict):
             string.append({
-                                         "m": {
-                                                   "first": {"parent": key1,
-                                                             "children":
-                                                             walk(tree1[key1],
-                                                                  tree2[key1],
-                                                                  "u")}}})
+                           "m": {
+                                 "first": {"parent": key1,
+                                           "children": walk(tree1[key1],
+                                                            tree2[key1],
+                                                            "u")}}})
         else:
             string.append({
-                                        flag: {
-                                                   "first": {"parent": key1,
-                                                             "children":
-                                                             walk(tree1[key1],
-                                                                  {}, flag)},
-                                                   "second": {
-                                                                   "key": key1,
-                                                                   "value":
-                                                                   tree2[key1]
-                                                                   }}})
+                           flag: {
+                                  "first": {"parent": key1, "children":
+                                            walk(tree1[key1], {}, flag)},
+                                  "second": {"key": key1,
+                                             "value": tree2[key1]}}})
     else:
         if isinstance(tree2[key1], dict):
             string.append({
