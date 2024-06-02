@@ -56,4 +56,5 @@ def plain(tree):    # noqa: C901
                 out.append("Property " + "'" + propertie + "'" + text + "\n")
             prop.pop()
     walk(tree, prop=[])
-    return "".join(out)
+    out_string = "".join(out)
+    return out_string.rstrip()
