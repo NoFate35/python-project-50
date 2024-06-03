@@ -5,17 +5,17 @@ from gendiff.diff.get_diff import generate_diff
 @pytest.fixture
 def files_json():
     return (
-                  "tests/fixtures/file1.json", # noqa: E126
+                  "tests/fixtures/file1.json",  # noqa: E126
                   "tests/fixtures/file2.json"
-                 ) # noqa: E126
+                 )  # noqa: E126
 
 
 @pytest.fixture
 def files_yml():
     return (
-                  "tests/fixtures/file1.yml", # noqa: E126
+                  "tests/fixtures/file1.yml",  # noqa: E126
                   "tests/fixtures/file2.yml"
-                 ) # noqa: E126
+                 )  # noqa: E126
 
 
 @pytest.fixture
