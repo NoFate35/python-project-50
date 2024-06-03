@@ -37,7 +37,7 @@ def if_key1_in_tree2(key1, tree1, tree2, flag, string):
         else:
             string.append({
                            flag: {  # noqa: E126
-                                  "first": {"parent": key1, "children":  # noqa: E126
+                                  "first": {"parent": key1, "children":  # noqa: E126, E501
                                             walk(tree1[key1], {}, flag)},
                                   "second": {"key": key1,
                                              "value": tree2[key1]}}})
@@ -58,7 +58,7 @@ def if_key1_in_tree2(key1, tree1, tree2, flag, string):
                 string.append({
                                              "m": {  # noqa: E126
                                                    "first": {  # noqa: E126
-                                                            "key": key1,  # noqa: E126
+                                                            "key": key1,  # noqa: E126, E501
                                                             "value":
                                                             tree1[key1]}}})
             else:
