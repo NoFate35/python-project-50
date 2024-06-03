@@ -2,5 +2,5 @@ import json
 
 
 def get_json(tree):
-    x = json.dumps(tree)
-    return x
+    json_tree = json.dumps(tree)
+    return json_tree
