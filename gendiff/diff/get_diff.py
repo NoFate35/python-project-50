@@ -16,9 +16,9 @@ def generate_diff(file_path1, file_path2, format="stylish"):
 def walk(tree1, tree2, flag):
     """generate the list of difference recursive and"""
     """return his to GET DIFF DICT """
-    if tree2 == {}:
+    if tree2 == dict():
         flag = "m"
-    string = []
+    string = list()
     visited = set()
     flag, string, visited = first_tree(tree1, tree2, flag, string, visited)
     string = second_tree(tree2, visited, string)
@@ -59,9 +59,9 @@ def if_key1_in_tree2(key1, tree1, tree2, flag, string):
 
 def first_tree(tree1, tree2, flag, string, visited):
     """This function is the part of WALK to avoid linter complex error """
-    for key1 in tree1.keys():
+    for key1 in tree1:
         visited.add(key1)
-        if key1 in tree2.keys():
+        if key1 in tree2:
             string, flag = if_key1_in_tree2(key1, tree1, tree2, flag, string)
         else:
             if isinstance(tree1[key1], dict):
