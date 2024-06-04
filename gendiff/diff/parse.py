@@ -13,8 +13,8 @@ def get_data(file_path1, file_path2):
         data1 = json.load(open(file_path1))
         data2 = json.load(open(file_path2))
     else:
-        with open(file_path1, 'r') as file_object1:
-            with open(file_path2, 'r') as file_object2:
+        with open(file_path1) as file_object1:
+            with open(file_path2) as file_object2:
                 data1 = yaml.load(file_object1, Loader=SafeLoader)
                 data2 = yaml.load(file_object2, Loader=SafeLoader)
-    return (data1, data2)
+    return data1, data2
