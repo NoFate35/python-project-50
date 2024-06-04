@@ -29,15 +29,14 @@ def if_key1_in_tree2(key1, tree1, tree2, flag, string):
     if isinstance(tree1[key1], dict):
         if isinstance(tree2[key1], dict):
             string.append({
-                "m": {  # noqa: E126
-                                 "first": {"parent": key1,  # noqa: E126
-                                           "children": walk(tree1[key1],
-                                                            tree2[key1],
-                                                            "u")}}})
+                "m": {
+                      "first": {"parent": key1,
+                                "children": walk(tree1[key1],
+                                                 tree2[key1], "u")}}})
         else:
             string.append({
-                           flag: {  # noqa: E126
-                                  "first": {"parent": key1, "children":  # noqa: E126, E501
+                           flag: {
+                                  "first": {"parent": key1, "children":
                                             walk(tree1[key1], {}, flag)},
                                   "second": {"key": key1,
                                              "value": tree2[key1]}}})
@@ -45,31 +44,21 @@ def if_key1_in_tree2(key1, tree1, tree2, flag, string):
         if isinstance(tree2[key1], dict):
             string.append({
                 flag: {
-                           "first": {  # noqa: E126
-                                     "key": key1,  # noqa: E126
-                                     "value": tree1[key1]},
-                           "second": {
-                                           "parent": key1,  # noqa: E126
-                                           "children":
-                                           walk(tree2[key1],
-                                                {}, flag)}}})
+                        "first": {
+                                  "key": key1,
+                                  "value": tree1[key1]},
+                        "second": {
+                                   "parent": key1,
+                                   "children": walk(tree2[key1], {}, flag)}}})
         else:
             if tree1[key1] == tree2[key1]:
                 string.append({
-                                             "m": {  # noqa: E126
-                                                   "first": {  # noqa: E126
-                                                            "key": key1,  # noqa: E126, E501
-                                                            "value":
-                                                            tree1[key1]}}})
+                               "m": {"first": {"key": key1,
+                                               "value": tree1[key1]}}})
             else:
                 string.append({
-                    flag: {
-                               "first": {  # noqa: E126
-                                         "key": key1,  # noqa: E126
-                                         "value": tree1[key1]},
-                               "second": {
-                                               "key": key1,  # noqa: E126
-                                               "value": tree2[key1]}}})
+                    flag: {"first": {"key": key1, "value": tree1[key1]},
+                           "second": {"key": key1, "value": tree2[key1]}}})
     return string, flag
 
 
@@ -82,17 +71,17 @@ def first_tree(tree1, tree2, flag, string, visited):
         else:
             if isinstance(tree1[key1], dict):
                 string.append({
-                            flag: {  # noqa: E126
-                                   "first": {  # noqa: E126
-                                             "parent": key1,  # noqa: E126
+                            flag: {
+                                   "first": {
+                                             "parent": key1,
                                              "children":
                                              walk(tree1[key1],
                                                   {}, flag)}}})
             else:
                 string.append({
-                            flag: {  # noqa: E126
-                                   "first": {  # noqa: E126
-                                             "key": key1,  # noqa: E126
+                            flag: {
+                                   "first": {
+                                             "key": key1,
                                              "value": tree1[key1]}}})
     return flag, string, visited
 
@@ -104,18 +93,17 @@ def second_tree(tree2, visited, string):
             pass
         elif isinstance(tree2[key2], dict):
             string.append({
-                        "u": {  # noqa: E126
-                             "second": {  # noqa: E126
-                                             "parent": key2,  # noqa: E126
-                                             "children":
-                                             walk(tree2[key2],
-                                                  {}, "u")}}})
+                           "u": {
+                                 "second": {
+                                            "parent": key2,
+                                            "children": walk(tree2[key2],
+                                                             {}, "u")}}})
         else:
             string.append({
-                            "u": {  # noqa: E126
-                                 "second": {  # noqa: E126
-                                                 "key": key2,  # noqa: E126
-                                                 "value": tree2[key2]}}})
+                            "u": {
+                                  "second": {
+                                             "key": key2,
+                                             "value": tree2[key2]}}})
     return string
 
 
