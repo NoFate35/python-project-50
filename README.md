@@ -7,4 +7,4 @@
 
 
 heclet-code usage:
-[![asciicast](https://asciinema.org/a/n2NXdDXv6zGbR21pLnqEXWNcj.svg)](https://asciinema.org/a/n2NXdDXv6zGbR21pLnqEXWNcj)
+[![asciicast](https://asciinema.org/a/RuENZDxI7fBrf2Ra5vo1eWtxd.svg)](https://asciinema.org/a/RuENZDxI7fBrf2Ra5vo1eWtxd)
