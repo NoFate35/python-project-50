@@ -9,12 +9,10 @@ def main():
     descript = 'Compares two configuration files and shows a difference.'
     parser = argparse.ArgumentParser(description=descript)
     parser.add_argument('first_file')
-    parser.add_argument('second_file', type=str)
+    parser.add_argument('second_file')
     parser.add_argument("-f", "--format", type=str, help="set format of output")
     args = parser.parse_args()
-    if args.format == "plain":
-        format = args.format
-    elif args.format == "json":
+    if args.format in ("plain", "json"):
         format = args.format
     else:
         format = "stylish"
