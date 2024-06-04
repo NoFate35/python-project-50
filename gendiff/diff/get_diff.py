@@ -78,7 +78,7 @@ def first_tree(tree1, tree2, flag, string, visited):
 
 def second_tree(tree2, visited, string):
     """This function is the part of WALK to avoid linter complex error """
-    for key2 in tree2.keys():
+    for key2 in tree2:
         if key2 in visited:
             pass
         elif isinstance(tree2[key2], dict):

@@ -20,16 +20,10 @@ def sort_tree(ls):
     second = comparsion.get("second")
     if first:
         parent = first.get("parent")
-        if parent:
-            return parent
-        else:
-            return first["key"]
+        return parent or first["key"]
     else:
         parent = second.get("parent")
-        if parent:
-            return parent
-        else:
-            return second["key"]
+        return parent or second["key"]
 
 
 def get_match(comparsion):
